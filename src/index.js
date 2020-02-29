@@ -33,30 +33,25 @@ class App extends Component {
   deleteLevel(levelCode) {
     console.log(levelCode)
 
-    fetch(`https://92f3omyr9j.execute-api.us-west-2.amazonaws.com/dev/removeLevel?levelcode=${levelCode}`)
-    .then(results =>results.json())
-        .then(json => {
-          
-        
-        }).catch(err => {
-          this.fetchLevels();
-          console.log("err")
-          console.log(err)
-        });
+    // fetch(`https://92f3omyr9j.execute-api.us-west-2.amazonaws.com/dev/removeLevel?levelcode=${levelCode}`)
+    // .then(results =>results.json())
+    //     .then(json => {
+    //
+    //
+    //     }).catch(err => {
+    //       this.fetchLevels();
+    //       console.log("err")
+    //       console.log(err)
+    //     });
   }
 
   fetchLevels() {
     console.log("fetched levels")
-     fetch('https://bf2c698185.execute-api.us-west-2.amazonaws.com/dev')
+     fetch('https://vwwfgua8k2.execute-api.us-east-1.amazonaws.com/dev/level')
       .then(results =>results.json())
         .then(json => {
-          console.log(json)
-          json.forEach(value => {
-            value.submitTime = +new Date(value.requestTime)
-          })
 
 
-          
 
           this.setState({
             levelList: json, 

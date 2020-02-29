@@ -7,7 +7,7 @@ const LevelList = ({ levelList, onDelete }) => {
     onDelete(a);
   }
 
-  levelList = _.sortBy(levelList, ["submitTime"]);
+  levelList = _.sortBy(levelList, ["createdAt"]);
   levelList = levelList.filter(b => {
     return !b.completed;
   });
@@ -18,30 +18,30 @@ const LevelList = ({ levelList, onDelete }) => {
         <h1>LevelCodes - {levelList.length}</h1>
       </center>
 
-      {levelList.map(a => (
+      {levelList.map(level => (
         <center>
           <div className="card">
             <div className="card-body">
               <div className="mb-1">
-                <span className="levelCode" >{a.levelCode}</span>
+                <span className="levelCode" >{level.levelCode}</span>
               </div>
               <div className="mb-1">
-                <span className="userName" >{a.userName}</span>
+                <span className="userName" >{level.userName}</span>
               </div>
               <div className="mb-1">
                 <span>
-                  Added: {new Date(a.requestTime).toLocaleDateString()}{" "}
-                  {new Date(a.requestTime).toLocaleTimeString()}
+                  Added: {new Date(level.createdAt).toLocaleDateString()}{" "}
+                  {new Date(level.createdAt).toLocaleTimeString()}
                 </span>
               </div>
               <div className="mb-1">
-                <button className="btn btn-success mr-2 ml-2" onClick={e => handleClick(a, e)}>
+                <button className="btn btn-success mr-2 ml-2" onClick={e => handleClick(level, e)}>
                   Clear Level
                 </button>
-                <button className="btn btn-warning  mr-2 ml-2" onClick={e => handleClick(a, e)}>
+                <button className="btn btn-warning  mr-2 ml-2" onClick={e => handleClick(level, e)}>
                   Skip Level
                 </button>
-                <button className="btn btn-danger mr-2 ml-2" onClick={(e) => handleClick(a, e)}> <span className="fa fa-search"></span>Delete Level</button>
+                <button className="btn btn-danger mr-2 ml-2" onClick={(e) => handleClick(level, e)}> <span className="fa fa-search"></span>Delete Level</button>
               </div>
 
             </div>

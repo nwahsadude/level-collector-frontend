@@ -7,7 +7,7 @@ const CompletedLevelList = ({ levelList, onDelete }) => {
   function handleClick(a, event) {
     onDelete(a)
   }
-  levelList = _.orderBy(levelList, ["submitTime"], ["desc"]);
+  levelList = _.orderBy(levelList, ["createdAt"], ["desc"]);
   levelList = levelList.filter(b => {
         return b.completed
       })
@@ -30,7 +30,7 @@ const CompletedLevelList = ({ levelList, onDelete }) => {
                 <span className="userName" >{a.userName}</span>
               </div>
               <div className="mb-1">
-                <span>Added: {new Date(a.requestTime).toLocaleDateString()} {new Date(a.requestTime).toLocaleTimeString()}</span>
+                <span>Added: {new Date(a.createdAt).toLocaleDateString()} {new Date(a.createdAt).toLocaleTimeString()}</span>
               </div>
               <div className="mb-1">
                 <button className="btn btn-info" onClick={(e) => handleClick(a, e)}>Redo Level</button>
