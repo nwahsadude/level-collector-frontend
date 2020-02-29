@@ -68,11 +68,11 @@ class App extends Component {
 
   render() {
     return (
-      <div class="m-2">
-      <center><button class="btn btn-primary" onClick={() => this.fetchLevels()}>Refresh</button></center>
-    <div class="row">
-    <div class="col-6"><LevelList levelList={this.state.levelList} onDelete={(e) => this.handleDelete(e)}/></div>
-    <div class="col-6"><CompletedLevelList levelList={this.state.levelList} onDelete={(e) => this.handleDelete(e)}/></div>
+      <div className="m-2">
+      <center><button className="btn btn-primary" onClick={() => this.fetchLevels()}>Refresh</button></center>
+    <div className="row">
+    <div className="col-6"><LevelList levelList={this.state.levelList} onDelete={(e) => this.handleDelete(e)}/></div>
+    <div className="col-6"><CompletedLevelList levelList={this.state.levelList} onDelete={(e) => this.handleDelete(e)}/></div>
     </div>
           
        
