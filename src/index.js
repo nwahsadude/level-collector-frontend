@@ -1,16 +1,15 @@
-import React, { Component } from 'react';
-import { render } from 'react-dom';
-import LevelList from "./LevelList"
-import CompletedLevelList from "./CompletedLevelList"
-import './style.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import * as _ from "lodash"
+import React, { Component } from "react";
+import { render } from "react-dom";
+import LevelList from "./LevelList";
+import CompletedLevelList from "./CompletedLevelList";
+import "./style.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      name: 'React',
+      name: "React",
       levelList: []
     };
   }
@@ -30,8 +29,35 @@ class App extends Component {
     this.deleteLevel(e.levelCode);
   }
 
+  handleClear(level) {
+    console.log(level);
+
+    fetch(
+      `https://vwwfgua8k2.execute-api.us-east-1.amazonaws.com/dev/level/clear/${level.id}`,
+      {
+        method: "PUT",
+        body: JSON.stringify({ cleared: !level.cleared })
+      }
+    )
+      .then(results => results.json())
+      .then(json => {
+
+
+        const index = this.state.levelList.findIndex(level => level.id === json.id);
+        const levelList = [...this.state.levelList];
+        levelList[index] = json;
+        this.setState({levelList});
+
+        console.log(json);
+      })
+      .catch(err => {
+        console.log("err");
+        console.log(err);
+      });
+  }
+
   deleteLevel(levelCode) {
-    console.log(levelCode)
+    console.log(levelCode);
 
     // fetch(`https://92f3omyr9j.execute-api.us-west-2.amazonaws.com/dev/removeLevel?levelcode=${levelCode}`)
     // .then(results =>results.json())
@@ -46,37 +72,48 @@ class App extends Component {
   }
 
   fetchLevels() {
-    console.log("fetched levels")
-     fetch('https://vwwfgua8k2.execute-api.us-east-1.amazonaws.com/dev/level')
-      .then(results =>results.json())
-        .then(json => {
-
-
-
-          this.setState({
-            levelList: json, 
-          })
-        }).catch(err => {
-          console.log(err)
+    console.log("fetched levels");
+    fetch("https://vwwfgua8k2.execute-api.us-east-1.amazonaws.com/dev/level")
+      .then(results => results.json())
+      .then(json => {
+        this.setState({
+          levelList: json
         });
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 
   render() {
     return (
       <div className="m-2">
-      <center><button className="btn btn-primary" onClick={() => this.fetchLevels()}>Refresh</button></center>
-    <div className="row">
-    <div className="col-6"><LevelList levelList={this.state.levelList} onDelete={(e) => this.handleDelete(e)}/></div>
-    <div className="col-6"><CompletedLevelList levelList={this.state.levelList} onDelete={(e) => this.handleDelete(e)}/></div>
-    </div>
-          
-       
+        <center>
+          <button
+            className="btn btn-primary"
+            onClick={() => this.fetchLevels()}
+          >
+            Refresh
+          </button>
+        </center>
+        <div className="row">
+          <div className="col-6">
+            <LevelList
+              levelList={this.state.levelList}
+              onDelete={e => this.handleDelete(e)}
+              onClear={e => this.handleClear(e)}
+            />
+          </div>
+          <div className="col-6">
+            <CompletedLevelList
+              levelList={this.state.levelList}
+              onDelete={e => this.handleDelete(e)}
+            />
+          </div>
+        </div>
       </div>
     );
   }
-
-
-
 }
 
-render(<App />, document.getElementById('root'));
+render(<App />, document.getElementById("root"));
