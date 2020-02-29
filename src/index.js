@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
 import LevelList from "./LevelList";
-import CompletedLevelList from "./CompletedLevelList";
+import ClearedLevelList from "./ClearedLevelList";
 import "./style.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -37,6 +37,33 @@ class App extends Component {
       {
         method: "PUT",
         body: JSON.stringify({ cleared: !level.cleared })
+      }
+    )
+      .then(results => results.json())
+      .then(json => {
+
+
+        const index = this.state.levelList.findIndex(level => level.id === json.id);
+        const levelList = [...this.state.levelList];
+        levelList[index] = json;
+        this.setState({levelList});
+
+        console.log(json);
+      })
+      .catch(err => {
+        console.log("err");
+        console.log(err);
+      });
+  }
+
+  handleSkip(level) {
+    console.log(level);
+
+    fetch(
+      `https://vwwfgua8k2.execute-api.us-east-1.amazonaws.com/dev/level/skip/${level.id}`,
+      {
+        method: "PUT",
+        body: JSON.stringify({ skipped: !level.skipped })
       }
     )
       .then(results => results.json())
@@ -102,10 +129,11 @@ class App extends Component {
               levelList={this.state.levelList}
               onDelete={e => this.handleDelete(e)}
               onClear={e => this.handleClear(e)}
+              onSkip={e => this.handleSkip(e)}
             />
           </div>
           <div className="col-6">
-            <CompletedLevelList
+            <ClearedLevelList
               levelList={this.state.levelList}
               onDelete={e => this.handleDelete(e)}
             />

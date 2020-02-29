@@ -2,7 +2,7 @@ import React from "react";
 import * as _ from "lodash";
 
 
-const LevelList = ({ levelList, onDelete, onClear }) => {
+const LevelList = ({ levelList, onDelete, onClear, onSkip }) => {
   function handleClick(a, event) {
     onDelete(a);
   }
@@ -39,8 +39,9 @@ const LevelList = ({ levelList, onDelete, onClear }) => {
                   {!level.cleared && (<span>Clear Level</span>)}
                   {level.cleared && (<span>Un-Clear Level</span>)}
                 </button>
-                <button className="btn btn-warning  mr-2 ml-2" onClick={e => handleClick(level, e)}>
-                  Skip Level
+                <button className="btn btn-warning  mr-2 ml-2" onClick={e => onSkip(level, e)}>
+                {!level.skipped && (<span>Skip Level</span>)}
+                  {level.skipped && (<span>Un-Skip Level</span>)}
                 </button>
                 <button className="btn btn-danger mr-2 ml-2" onClick={(e) => handleClick(level, e)}> <span className="fa fa-search"></span>Delete Level</button>
               </div>
