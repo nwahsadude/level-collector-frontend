@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-import Hello from './Hello';
 import LevelList from "./LevelList"
 import CompletedLevelList from "./CompletedLevelList"
 import './style.css';
