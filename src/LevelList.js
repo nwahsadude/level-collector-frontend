@@ -43,7 +43,7 @@ const LevelList = ({ levelList, onDelete, onClear, onSkip }) => {
                 {!level.skipped && (<span>Skip Level</span>)}
                   {level.skipped && (<span>Un-Skip Level</span>)}
                 </button>
-                <button className="btn btn-danger mr-2 ml-2" onClick={(e) => handleClick(level, e)}> <span className="fa fa-search"></span>Delete Level</button>
+                <button className="btn btn-danger mr-2 ml-2" onClick={(e) => handleClick(level, e)}>Delete Level</button>
               </div>
 
             </div>

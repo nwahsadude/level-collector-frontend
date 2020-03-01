@@ -1,11 +1,7 @@
 import React from "react";
 import * as _ from "lodash";
 
-
-const LevelList = ({ levelList, onDelete, onClear, onSkip }) => {
-  function handleClick(a, event) {
-    onDelete(a);
-  }
+const LevelList = ({ levelList, onSkip }) => {
 
   levelList = _.sortBy(levelList, ["createdAt"]);
   levelList = levelList.filter(b => {
@@ -15,7 +11,7 @@ const LevelList = ({ levelList, onDelete, onClear, onSkip }) => {
   return (
     <div>
       <center>
-        <h1>LevelCodes - {levelList.length}</h1>
+        <h1> Skipped LevelCodes - {levelList.length}</h1>
       </center>
 
       {levelList.map(level => (

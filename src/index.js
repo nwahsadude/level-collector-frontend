@@ -85,21 +85,6 @@ class App extends Component {
       });
   }
 
-  deleteLevel(levelCode) {
-    console.log(levelCode);
-
-    // fetch(`https://92f3omyr9j.execute-api.us-west-2.amazonaws.com/dev/removeLevel?levelcode=${levelCode}`)
-    // .then(results =>results.json())
-    //     .then(json => {
-    //
-    //
-    //     }).catch(err => {
-    //       this.fetchLevels();
-    //       console.log("err")
-    //       console.log(err)
-    //     });
-  }
-
   fetchLevels() {
     console.log("fetched levels");
     fetch("https://vwwfgua8k2.execute-api.us-east-1.amazonaws.com/dev/level")
@@ -115,60 +100,45 @@ class App extends Component {
   }
 
   render() {
-
     return (
       <div className="m-2">
         <center>
           <button
             className="btn btn-primary"
             onClick={() => this.fetchLevels()}
-          >
-            Refresh
-          </button>
+          >Refresh</button>
         </center>
 
         <div className='ml-2'>
-            <div className="row">
-              <Tabs className="w-100" contentClass="tab-content-default">
-                <Tab label="LevelList">
-                  <div>
-                    <div>
-                      <LevelList
-                        levelList={this.state.levelList}
-                        onDelete={e => this.handleDelete(e)}
-                        onClear={e => this.handleClear(e)}
-                        onSkip={e => this.handleSkip(e)}
-                      />
-                    </div>
-                  </div>
-                </Tab>
-                <Tab label="ClearedLevels">
-                  <div>
-                    <div>
-                      <ClearedLevelList
-                        levelList={this.state.levelList}
-                        onDelete={e => this.handleDelete(e)}
-                        onClear={e => this.handleClear(e)}
-                        onSkip={e => this.handleSkip(e)}
-                      />
-                    </div>
-                  </div>
-                </Tab>
-                <Tab label="SkippedLevels" >
-                  <div>
-                    <div>
-                      <SkippedLevelList
-                        levelList={this.state.levelList}
-                        onDelete={e => this.handleDelete(e)}
-                        onClear={e => this.handleClear(e)}
-                        onSkip={e => this.handleSkip(e)}
-                      />
-                    </div>
-                  </div>
-                </Tab>
-                </Tabs>
-            </div>
-        </div>
+            <Tabs className="w-100" contentClass="tab-content-default">
+              <Tab label="LevelList">
+                <div>
+                  <LevelList
+                    levelList={this.state.levelList}
+                    onDelete={e => this.handleDelete(e)}
+                    onClear={e => this.handleClear(e)}
+                    onSkip={e => this.handleSkip(e)}
+                  />
+                </div>
+              </Tab>
+              <Tab label="ClearedLevels">
+                <div>
+                  <ClearedLevelList
+                    levelList={this.state.levelList}
+                    onClear={e => this.handleClear(e)}
+                  />
+                </div>
+              </Tab>
+              <Tab label="SkippedLevels" >
+                <div>
+                  <SkippedLevelList
+                    levelList={this.state.levelList}
+                    onSkip={e => this.handleSkip(e)}
+                  />
+                </div>
+              </Tab>
+            </Tabs>
+          </div>
       </div>
     );
   }
