@@ -9,7 +9,7 @@ const LevelList = ({ levelList, onDelete, onClear, onSkip }) => {
 
   levelList = _.sortBy(levelList, ["createdAt"]);
   levelList = levelList.filter(b => {
-    return !b.completed;
+    return !b.cleared && !b.skipped;
   });
 
   return (

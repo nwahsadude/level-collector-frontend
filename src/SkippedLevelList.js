@@ -9,7 +9,7 @@ const LevelList = ({ levelList, onDelete, onClear, onSkip }) => {
 
   levelList = _.sortBy(levelList, ["createdAt"]);
   levelList = levelList.filter(b => {
-    return !b.completed;
+    return b.skipped && !b.cleared;
   });
 
   return (
@@ -35,15 +35,10 @@ const LevelList = ({ levelList, onDelete, onClear, onSkip }) => {
                 </span>
               </div>
               <div className="mb-1">
-                <button className="btn btn-success mr-2 ml-2" onClick={e => onClear(level, e)}>
-                  {!level.cleared && (<span>Clear Level</span>)}
-                  {level.cleared && (<span>Un-Clear Level</span>)}
-                </button>
                 <button className="btn btn-warning  mr-2 ml-2" onClick={e => onSkip(level, e)}>
                 {!level.skipped && (<span>Skip Level</span>)}
                   {level.skipped && (<span>Un-Skip Level</span>)}
                 </button>
-                <button className="btn btn-danger mr-2 ml-2" onClick={(e) => handleClick(level, e)}> <span className="fa fa-search"></span>Delete Level</button>
               </div>
 
             </div>
