@@ -2,8 +2,10 @@ import React, { Component } from "react";
 import { render } from "react-dom";
 import LevelList from "./LevelList";
 import ClearedLevelList from "./ClearedLevelList";
+import SkippedLevelList from "./SkippedLevelList";
 import "./style.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import {Tabs, Tab} from 'react-bootstrap-tabs';
 
 class App extends Component {
   constructor() {
@@ -113,6 +115,7 @@ class App extends Component {
   }
 
   render() {
+
     return (
       <div className="m-2">
         <center>
@@ -123,21 +126,48 @@ class App extends Component {
             Refresh
           </button>
         </center>
-        <div className="row">
-          <div className="col-6">
-            <LevelList
-              levelList={this.state.levelList}
-              onDelete={e => this.handleDelete(e)}
-              onClear={e => this.handleClear(e)}
-              onSkip={e => this.handleSkip(e)}
-            />
-          </div>
-          <div className="col-6">
-            <ClearedLevelList
-              levelList={this.state.levelList}
-              onDelete={e => this.handleDelete(e)}
-            />
-          </div>
+
+        <div className='ml-2'>
+            <div className="row">
+              <Tabs className="w-100" contentClass="tab-content-default">
+                <Tab label="LevelList">
+                  <div>
+                    <div>
+                      <LevelList
+                        levelList={this.state.levelList}
+                        onDelete={e => this.handleDelete(e)}
+                        onClear={e => this.handleClear(e)}
+                        onSkip={e => this.handleSkip(e)}
+                      />
+                    </div>
+                  </div>
+                </Tab>
+                <Tab label="ClearedLevels">
+                  <div>
+                    <div>
+                      <ClearedLevelList
+                        levelList={this.state.levelList}
+                        onDelete={e => this.handleDelete(e)}
+                        onClear={e => this.handleClear(e)}
+                        onSkip={e => this.handleSkip(e)}
+                      />
+                    </div>
+                  </div>
+                </Tab>
+                <Tab label="SkippedLevels" >
+                  <div>
+                    <div>
+                      <SkippedLevelList
+                        levelList={this.state.levelList}
+                        onDelete={e => this.handleDelete(e)}
+                        onClear={e => this.handleClear(e)}
+                        onSkip={e => this.handleSkip(e)}
+                      />
+                    </div>
+                  </div>
+                </Tab>
+                </Tabs>
+            </div>
         </div>
       </div>
     );

@@ -19,7 +19,7 @@ const LevelList = ({ levelList, onDelete, onClear, onSkip }) => {
       </center>
 
       {levelList.map(level => (
-        <center>
+        <center key={level.levelCode}>
           <div className="card">
             <div className="card-body">
               <div className="mb-1">
