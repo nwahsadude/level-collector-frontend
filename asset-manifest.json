@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/level-collector-frontend/static/css/main.9beffc53.chunk.css",
-    "main.js": "/level-collector-frontend/static/js/main.48ecf6b1.chunk.js",
-    "main.js.map": "/level-collector-frontend/static/js/main.48ecf6b1.chunk.js.map",
+    "main.js": "/level-collector-frontend/static/js/main.2ae086c4.chunk.js",
+    "main.js.map": "/level-collector-frontend/static/js/main.2ae086c4.chunk.js.map",
     "runtime-main.js": "/level-collector-frontend/static/js/runtime-main.2196c069.js",
     "runtime-main.js.map": "/level-collector-frontend/static/js/runtime-main.2196c069.js.map",
     "static/css/2.47e06e2e.chunk.css": "/level-collector-frontend/static/css/2.47e06e2e.chunk.css",
     "static/js/2.f8e6c943.chunk.js": "/level-collector-frontend/static/js/2.f8e6c943.chunk.js",
     "static/js/2.f8e6c943.chunk.js.map": "/level-collector-frontend/static/js/2.f8e6c943.chunk.js.map",
     "index.html": "/level-collector-frontend/index.html",
-    "precache-manifest.968b05dfd99028772d764b4f60843b1c.js": "/level-collector-frontend/precache-manifest.968b05dfd99028772d764b4f60843b1c.js",
+    "precache-manifest.cd048aa50ca4b16f61fcec55dd36eeb7.js": "/level-collector-frontend/precache-manifest.cd048aa50ca4b16f61fcec55dd36eeb7.js",
     "service-worker.js": "/level-collector-frontend/service-worker.js",
     "static/css/2.47e06e2e.chunk.css.map": "/level-collector-frontend/static/css/2.47e06e2e.chunk.css.map",
     "static/css/main.9beffc53.chunk.css.map": "/level-collector-frontend/static/css/main.9beffc53.chunk.css.map",
@@ -20,6 +20,6 @@
     "static/css/2.47e06e2e.chunk.css",
     "static/js/2.f8e6c943.chunk.js",
     "static/css/main.9beffc53.chunk.css",
-    "static/js/main.48ecf6b1.chunk.js"
+    "static/js/main.2ae086c4.chunk.js"
   ]
 }
