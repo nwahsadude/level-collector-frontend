@@ -90,7 +90,7 @@ class App extends Component {
 
   fetchLevels() {
     console.log("fetched levels");
-    fetch(`https://${config.url}.execute-api.us-east-1.amazonaws.com/${config.environment}/level`)
+    fetch(`https://${config.url}.execute-api.us-east-1.amazonaws.com/${config.environment}/level/list`)
       .then(results => results.json())
       .then(json => {
         this.setState({
