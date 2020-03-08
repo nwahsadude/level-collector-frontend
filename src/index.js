@@ -5,7 +5,9 @@ import ClearedLevelList from "./ClearedLevelList";
 import SkippedLevelList from "./SkippedLevelList";
 import "./style.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import {Tabs, Tab} from 'react-bootstrap-tabs';
+import { Tabs, Tab } from "react-bootstrap-tabs";
+import config from "./config";
+
 
 class App extends Component {
   constructor() {
@@ -16,6 +18,8 @@ class App extends Component {
   }
 
   componentDidMount() {
+    console.log(config);
+
     this.fetchLevels();
   }
 
@@ -34,7 +38,7 @@ class App extends Component {
     console.log(level);
 
     fetch(
-      `https://nnzw0f4u3h.execute-api.us-east-1.amazonaws.com/prod/level/clear/${level.id}`,
+      `https://${config.url}.execute-api.us-east-1.amazonaws.com/${config.environment}/level/clear/${level.id}`,
       {
         method: "PUT",
         body: JSON.stringify({ cleared: !level.cleared })
@@ -42,12 +46,12 @@ class App extends Component {
     )
       .then(results => results.json())
       .then(json => {
-
-
-        const index = this.state.levelList.findIndex(level => level.id === json.id);
+        const index = this.state.levelList.findIndex(
+          level => level.id === json.id
+        );
         const levelList = [...this.state.levelList];
         levelList[index] = json;
-        this.setState({levelList});
+        this.setState({ levelList });
 
         console.log(json);
       })
@@ -61,7 +65,7 @@ class App extends Component {
     console.log(level);
 
     fetch(
-      `https://nnzw0f4u3h.execute-api.us-east-1.amazonaws.com/prod/level/skip/${level.id}`,
+      `https://${config.url}.execute-api.us-east-1.amazonaws.com/${config.environment}/level/skip/${level.id}`,
       {
         method: "PUT",
         body: JSON.stringify({ skipped: !level.skipped })
@@ -69,12 +73,12 @@ class App extends Component {
     )
       .then(results => results.json())
       .then(json => {
-
-
-        const index = this.state.levelList.findIndex(level => level.id === json.id);
+        const index = this.state.levelList.findIndex(
+          level => level.id === json.id
+        );
         const levelList = [...this.state.levelList];
         levelList[index] = json;
-        this.setState({levelList});
+        this.setState({ levelList });
 
         console.log(json);
       })
@@ -86,7 +90,7 @@ class App extends Component {
 
   fetchLevels() {
     console.log("fetched levels");
-    fetch("https://nnzw0f4u3h.execute-api.us-east-1.amazonaws.com/prod/level")
+    fetch(`https://${config.url}.execute-api.us-east-1.amazonaws.com/${config.environment}/level`)
       .then(results => results.json())
       .then(json => {
         this.setState({
@@ -105,39 +109,41 @@ class App extends Component {
           <button
             className="btn btn-primary"
             onClick={() => this.fetchLevels()}
-          >Refresh</button>
+          >
+            Refresh
+          </button>
         </center>
 
-        <div className='ml-2'>
-            <Tabs className="w-100" contentClass="tab-content-default">
-              <Tab label="LevelList">
-                <div>
-                  <LevelList
-                    levelList={this.state.levelList}
-                    onDelete={e => this.handleDelete(e)}
-                    onClear={e => this.handleClear(e)}
-                    onSkip={e => this.handleSkip(e)}
-                  />
-                </div>
-              </Tab>
-              <Tab label="ClearedLevels">
-                <div>
-                  <ClearedLevelList
-                    levelList={this.state.levelList}
-                    onClear={e => this.handleClear(e)}
-                  />
-                </div>
-              </Tab>
-              <Tab label="SkippedLevels" >
-                <div>
-                  <SkippedLevelList
-                    levelList={this.state.levelList}
-                    onSkip={e => this.handleSkip(e)}
-                  />
-                </div>
-              </Tab>
-            </Tabs>
-          </div>
+        <div className="ml-2">
+          <Tabs className="w-100" contentClass="tab-content-default">
+            <Tab label="LevelList">
+              <div>
+                <LevelList
+                  levelList={this.state.levelList}
+                  onDelete={e => this.handleDelete(e)}
+                  onClear={e => this.handleClear(e)}
+                  onSkip={e => this.handleSkip(e)}
+                />
+              </div>
+            </Tab>
+            <Tab label="ClearedLevels">
+              <div>
+                <ClearedLevelList
+                  levelList={this.state.levelList}
+                  onClear={e => this.handleClear(e)}
+                />
+              </div>
+            </Tab>
+            <Tab label="SkippedLevels">
+              <div>
+                <SkippedLevelList
+                  levelList={this.state.levelList}
+                  onSkip={e => this.handleSkip(e)}
+                />
+              </div>
+            </Tab>
+          </Tabs>
+        </div>
       </div>
     );
   }
