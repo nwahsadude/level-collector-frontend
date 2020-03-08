@@ -11,7 +11,6 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      name: "React",
       levelList: []
     };
   }
@@ -35,7 +34,7 @@ class App extends Component {
     console.log(level);
 
     fetch(
-      `https://vwwfgua8k2.execute-api.us-east-1.amazonaws.com/dev/level/clear/${level.id}`,
+      `https://nnzw0f4u3h.execute-api.us-east-1.amazonaws.com/prod/level/clear/${level.id}`,
       {
         method: "PUT",
         body: JSON.stringify({ cleared: !level.cleared })
@@ -62,7 +61,7 @@ class App extends Component {
     console.log(level);
 
     fetch(
-      `https://vwwfgua8k2.execute-api.us-east-1.amazonaws.com/dev/level/skip/${level.id}`,
+      `https://nnzw0f4u3h.execute-api.us-east-1.amazonaws.com/prod/level/skip/${level.id}`,
       {
         method: "PUT",
         body: JSON.stringify({ skipped: !level.skipped })
@@ -87,7 +86,7 @@ class App extends Component {
 
   fetchLevels() {
     console.log("fetched levels");
-    fetch("https://vwwfgua8k2.execute-api.us-east-1.amazonaws.com/dev/level")
+    fetch("https://nnzw0f4u3h.execute-api.us-east-1.amazonaws.com/prod/level")
       .then(results => results.json())
       .then(json => {
         this.setState({
