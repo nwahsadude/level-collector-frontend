@@ -1,0 +1,1 @@
+{"version":3,"sources":["style.css"],"names":[],"mappings":"AAAA,KACE,gBACF,CAEA,WAEE,cACF,CAEA,qBAJE,eAMF","file":"main.9beffc53.chunk.css","sourcesContent":["h1, p {\r\n  font-family: Lato;\r\n}\r\n\r\n.levelCode {\r\n  font-weight: bold;\r\n  font-size: 200%;\r\n}\r\n\r\n.userName {\r\n  font-weight: bold;\r\n}"]}
