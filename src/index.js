@@ -8,7 +8,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Tabs, Tab } from "react-bootstrap-tabs";
 import config from "./config";
 
-
 class App extends Component {
   constructor() {
     super();
@@ -18,8 +17,6 @@ class App extends Component {
   }
 
   componentDidMount() {
-    console.log(config);
-
     this.fetchLevels();
   }
 
@@ -62,8 +59,6 @@ class App extends Component {
   }
 
   handleSkip(level) {
-    console.log(level);
-
     fetch(
       `https://${config.url}.execute-api.us-east-1.amazonaws.com/${config.environment}/level/skip/${level.id}`,
       {
@@ -79,8 +74,6 @@ class App extends Component {
         const levelList = [...this.state.levelList];
         levelList[index] = json;
         this.setState({ levelList });
-
-        console.log(json);
       })
       .catch(err => {
         console.log("err");
@@ -90,12 +83,27 @@ class App extends Component {
 
   fetchLevels() {
     console.log("fetched levels");
-    fetch(`https://${config.url}.execute-api.us-east-1.amazonaws.com/${config.environment}/level/list`)
+    fetch(
+      `https://${config.url}.execute-api.us-east-1.amazonaws.com/${config.environment}/level/list`
+    )
       .then(results => results.json())
       .then(json => {
         this.setState({
           levelList: json
         });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+
+  completeLevels() {
+    fetch(
+      `https://${config.url}.execute-api.us-east-1.amazonaws.com/${config.environment}/level/complete`,
+      { method: "PUT", body: null }
+    )
+      .then(() => {
+        this.fetchLevels();
       })
       .catch(err => {
         console.log(err);
@@ -111,6 +119,12 @@ class App extends Component {
             onClick={() => this.fetchLevels()}
           >
             Refresh
+          </button>
+          <button
+            className="btn btn-primary ml-1"
+            onClick={() => this.completeLevels()}
+          >
+            Complete
           </button>
         </center>
 
