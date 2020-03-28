@@ -1,0 +1,12 @@
+h1, p {
+  font-family: Lato;
+}
+
+.levelCode {
+  font-weight: bold;
+  font-size: 200%;
+}
+
+.userName {
+  font-weight: bold;
+}
