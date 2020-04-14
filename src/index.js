@@ -43,14 +43,7 @@ class App extends Component {
     )
       .then(results => results.json())
       .then(json => {
-        const index = this.state.levelList.findIndex(
-          level => level.id === json.id
-        );
-        const levelList = [...this.state.levelList];
-        levelList[index] = json;
-        this.setState({ levelList });
-
-        console.log(json);
+       this.fetchLevels();
       })
       .catch(err => {
         console.log("err");
@@ -68,12 +61,7 @@ class App extends Component {
     )
       .then(results => results.json())
       .then(json => {
-        const index = this.state.levelList.findIndex(
-          level => level.id === json.id
-        );
-        const levelList = [...this.state.levelList];
-        levelList[index] = json;
-        this.setState({ levelList });
+          this.fetchLevels();
       })
       .catch(err => {
         console.log("err");
