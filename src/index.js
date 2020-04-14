@@ -113,7 +113,8 @@ class App extends Component {
   render() {
     return (
       <div className="m-2">
-        <center>
+        <div className="d-flex justify-content-between">
+          <div></div>
           <button
             className="btn btn-primary"
             onClick={() => this.fetchLevels()}
@@ -121,13 +122,12 @@ class App extends Component {
             Refresh
           </button>
           <button
-            className="btn btn-primary ml-1"
+            className="btn btn-primary"
             onClick={() => this.completeLevels()}
           >
             Complete
           </button>
-        </center>
-
+        </div>
         <div className="ml-2">
           <Tabs className="w-100" contentClass="tab-content-default">
             <Tab label="LevelList">
